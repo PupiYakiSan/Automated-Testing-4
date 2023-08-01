@@ -9,13 +9,15 @@ import org.openqa.selenium.Keys;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 
 import static com.codeborne.selenide.Selenide.*;
 
 public class CardDeliveryTest {
 
-    public String generateDate(long addDays, String pattern) {
-        return LocalDate.now().plusDays(addDays).format(DateTimeFormatter.ofPattern(pattern));
+    Locale locale = new Locale("ru");
+    public String generateDate(long addDays, String pattern, Locale locale) {
+        return LocalDate.now().plusDays(addDays).format(DateTimeFormatter.ofPattern(pattern).withLocale(locale));
     }
 
     @BeforeEach
@@ -374,19 +376,23 @@ public class CardDeliveryTest {
         $("[data-test-id=city] input").val("Москва");
 
         int addDays = 3;
-        String planningDate = generateDate(addDays, "dd.MM.yyyy");
-        String day = generateDate(addDays, "d");
-        String month = generateDate(addDays, "LLLL");
+        String planningDate = generateDate(addDays, "dd.MM.yyyy", locale);
+        String day = generateDate(addDays, "d", locale);
+        String month = generateDate(addDays, "LLLL", locale);
         month = month.substring(0, 1).toUpperCase() + month.substring(1);
-        String year = generateDate(addDays, "yyyy");
+        String year = generateDate(addDays, "yyyy", locale);
 
         $(By.className("calendar-input")).click();
 
-        while (!$("div .calendar__name").getText().equals(month + " " + year)) {
-            $("[data-step='1']").click();
+        int max = addDays / 30 + 1;
+        for (int i = 0; i<= max; i++) {
+            if ($("div .calendar__name").getText().equals(month + " " + year)) {
+                $$("td").find(Condition.text(day)).click();
+                break;
+            } else {
+                $("[data-step='1']").click();
+            }
         }
-
-        $$("td").find(Condition.text(day)).click();
 
         $("[data-test-id=name] input").val("Петров Иван");
         $("[data-test-id=phone] input").val("+79001112233");
@@ -407,19 +413,23 @@ public class CardDeliveryTest {
         $("[data-test-id=city] input").val("Москва");
 
         int addDays = 4;
-        String planningDate = generateDate(addDays, "dd.MM.yyyy");
-        String day = generateDate(addDays, "d");
-        String month = generateDate(addDays, "LLLL");
+        String planningDate = generateDate(addDays, "dd.MM.yyyy", locale);
+        String day = generateDate(addDays, "d", locale);
+        String month = generateDate(addDays, "LLLL", locale);
         month = month.substring(0, 1).toUpperCase() + month.substring(1);
-        String year = generateDate(addDays, "yyyy");
+        String year = generateDate(addDays, "yyyy", locale);
 
         $(By.className("calendar-input")).click();
 
-        while (!$("div .calendar__name").getText().equals(month + " " + year)) {
-            $("[data-step='1']").click();
+        int max = addDays / 30 + 1;
+        for (int i = 0; i<= max; i++) {
+            if ($("div .calendar__name").getText().equals(month + " " + year)) {
+                $$("td").find(Condition.text(day)).click();
+                break;
+            } else {
+                $("[data-step='1']").click();
+            }
         }
-
-        $$("td").find(Condition.text(day)).click();
 
         $("[data-test-id=name] input").val("Петров Иван");
         $("[data-test-id=phone] input").val("+79001112233");
@@ -440,19 +450,23 @@ public class CardDeliveryTest {
         $("[data-test-id=city] input").val("Москва");
 
         int addDays = 34;
-        String planningDate = generateDate(addDays, "dd.MM.yyyy");
-        String day = generateDate(addDays, "d");
-        String month = generateDate(addDays, "LLLL");
+        String planningDate = generateDate(addDays, "dd.MM.yyyy", locale);
+        String day = generateDate(addDays, "d", locale);
+        String month = generateDate(addDays, "LLLL", locale);
         month = month.substring(0, 1).toUpperCase() + month.substring(1);
-        String year = generateDate(addDays, "yyyy");
+        String year = generateDate(addDays, "yyyy", locale);
 
         $(By.className("calendar-input")).click();
 
-        while (!$("div .calendar__name").getText().equals(month + " " + year)) {
-            $("[data-step='1']").click();
+        int max = addDays / 30 + 1;
+        for (int i = 0; i<= max; i++) {
+            if ($("div .calendar__name").getText().equals(month + " " + year)) {
+                $$("td").find(Condition.text(day)).click();
+                break;
+            } else {
+                $("[data-step='1']").click();
+            }
         }
-
-        $$("td").find(Condition.text(day)).click();
 
         $("[data-test-id=name] input").val("Петров Иван");
         $("[data-test-id=phone] input").val("+79001112233");
