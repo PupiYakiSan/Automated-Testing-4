@@ -16,6 +16,7 @@ import static com.codeborne.selenide.Selenide.*;
 public class CardDeliveryTest {
 
     Locale locale = new Locale("ru");
+
     public String generateDate(long addDays, String pattern, Locale locale) {
         return LocalDate.now().plusDays(addDays).format(DateTimeFormatter.ofPattern(pattern).withLocale(locale));
     }
@@ -25,11 +26,11 @@ public class CardDeliveryTest {
         open("http://localhost:9999");
     }
 
-/*    @Test
+    @Test
     void successSubmitForm() {
 
         $("[data-test-id=city] input").val("Москва");
-        String planningDate = generateDate(3, "dd.MM.yyyy");
+        String planningDate = generateDate(3, "dd.MM.yyyy", locale);
         $("[data-test-id='date'] input").sendKeys(Keys.chord(Keys.SHIFT, Keys.HOME), Keys.BACK_SPACE);
         $("[data-test-id='date'] input").setValue(planningDate);
         $("[data-test-id=name] input").val("Петров Иван");
@@ -50,7 +51,7 @@ public class CardDeliveryTest {
     void successSubmitFormDash() {
 
         $("[data-test-id=city] input").val("Улан-Удэ");
-        String planningDate = generateDate(3, "dd.MM.yyyy");
+        String planningDate = generateDate(3, "dd.MM.yyyy", locale);
         $("[data-test-id='date'] input").sendKeys(Keys.chord(Keys.SHIFT, Keys.HOME), Keys.BACK_SPACE);
         $("[data-test-id='date'] input").setValue(planningDate);
         $("[data-test-id=name] input").val("Краснова Анна-Мария");
@@ -70,7 +71,7 @@ public class CardDeliveryTest {
     void cityNotList() {
 
         $("[data-test-id=city] input").val("Серпухов");
-        String planningDate = generateDate(4, "dd.MM.yyyy");
+        String planningDate = generateDate(4, "dd.MM.yyyy", locale);
         $("[data-test-id='date'] input").sendKeys(Keys.chord(Keys.SHIFT, Keys.HOME), Keys.BACK_SPACE);
         $("[data-test-id='date'] input").setValue(planningDate);
         $("[data-test-id=name] input").val("Петров Иван");
@@ -85,7 +86,7 @@ public class CardDeliveryTest {
     void cityEmpty() {
 
         $("[data-test-id=city] input").val("");
-        String planningDate = generateDate(4, "dd.MM.yyyy");
+        String planningDate = generateDate(4, "dd.MM.yyyy", locale);
         $("[data-test-id='date'] input").sendKeys(Keys.chord(Keys.SHIFT, Keys.HOME), Keys.BACK_SPACE);
         $("[data-test-id='date'] input").setValue(planningDate);
         $("[data-test-id=name] input").val("Петров Иван");
@@ -100,7 +101,7 @@ public class CardDeliveryTest {
     void dataTodayPlusTwoDays() {
 
         $("[data-test-id=city] input").val("Москва");
-        String planningDate = generateDate(2, "dd.MM.yyyy");
+        String planningDate = generateDate(2, "dd.MM.yyyy", locale);
         $("[data-test-id='date'] input").sendKeys(Keys.chord(Keys.SHIFT, Keys.HOME), Keys.BACK_SPACE);
         $("[data-test-id='date'] input").setValue(planningDate);
         $("[data-test-id=name] input").val("Петров Иван");
@@ -115,7 +116,7 @@ public class CardDeliveryTest {
     void dataTodayPlusFourDays() {
 
         $("[data-test-id=city] input").val("Москва");
-        String planningDate = generateDate(4, "dd.MM.yyyy");
+        String planningDate = generateDate(4, "dd.MM.yyyy", locale);
         $("[data-test-id='date'] input").sendKeys(Keys.chord(Keys.SHIFT, Keys.HOME), Keys.BACK_SPACE);
         $("[data-test-id='date'] input").setValue(planningDate);
         $("[data-test-id=name] input").val("Петров Иван");
@@ -135,7 +136,7 @@ public class CardDeliveryTest {
     void dataTodayPlusManyDays() {
 
         $("[data-test-id=city] input").val("Москва");
-        String planningDate = generateDate(25, "dd.MM.yyyy");
+        String planningDate = generateDate(25, "dd.MM.yyyy", locale);
         $("[data-test-id='date'] input").sendKeys(Keys.chord(Keys.SHIFT, Keys.HOME), Keys.BACK_SPACE);
         $("[data-test-id='date'] input").setValue(planningDate);
         $("[data-test-id=name] input").val("Петров Иван");
@@ -168,7 +169,7 @@ public class CardDeliveryTest {
     void nameEnglish() {
 
         $("[data-test-id=city] input").val("Москва");
-        String planningDate = generateDate(4, "dd.MM.yyyy");
+        String planningDate = generateDate(4, "dd.MM.yyyy", locale);
         $("[data-test-id='date'] input").sendKeys(Keys.chord(Keys.SHIFT, Keys.HOME), Keys.BACK_SPACE);
         $("[data-test-id='date'] input").setValue(planningDate);
         $("[data-test-id=name] input").val("Petrov Ivan");
@@ -183,7 +184,7 @@ public class CardDeliveryTest {
     void nameNumber() {
 
         $("[data-test-id=city] input").val("Москва");
-        String planningDate = generateDate(4, "dd.MM.yyyy");
+        String planningDate = generateDate(4, "dd.MM.yyyy", locale);
         $("[data-test-id='date'] input").sendKeys(Keys.chord(Keys.SHIFT, Keys.HOME), Keys.BACK_SPACE);
         $("[data-test-id='date'] input").setValue(planningDate);
         $("[data-test-id=name] input").val("Петров Иван2");
@@ -198,7 +199,7 @@ public class CardDeliveryTest {
     void nameSymbol() {
 
         $("[data-test-id=city] input").val("Москва");
-        String planningDate = generateDate(4, "dd.MM.yyyy");
+        String planningDate = generateDate(4, "dd.MM.yyyy", locale);
         $("[data-test-id='date'] input").sendKeys(Keys.chord(Keys.SHIFT, Keys.HOME), Keys.BACK_SPACE);
         $("[data-test-id='date'] input").setValue(planningDate);
         $("[data-test-id=name] input").val("Петров% Иван");
@@ -213,7 +214,7 @@ public class CardDeliveryTest {
     void nameEmpty() {
 
         $("[data-test-id=city] input").val("Москва");
-        String planningDate = generateDate(4, "dd.MM.yyyy");
+        String planningDate = generateDate(4, "dd.MM.yyyy", locale);
         $("[data-test-id='date'] input").sendKeys(Keys.chord(Keys.SHIFT, Keys.HOME), Keys.BACK_SPACE);
         $("[data-test-id='date'] input").setValue(planningDate);
         $("[data-test-id=name] input").val("");
@@ -228,7 +229,7 @@ public class CardDeliveryTest {
     void phoneStartEight() {
 
         $("[data-test-id=city] input").val("Москва");
-        String planningDate = generateDate(4, "dd.MM.yyyy");
+        String planningDate = generateDate(4, "dd.MM.yyyy", locale);
         $("[data-test-id='date'] input").sendKeys(Keys.chord(Keys.SHIFT, Keys.HOME), Keys.BACK_SPACE);
         $("[data-test-id='date'] input").setValue(planningDate);
         $("[data-test-id=name] input").val("Петров Иван");
@@ -243,7 +244,7 @@ public class CardDeliveryTest {
     void phoneSmallNumber() {
 
         $("[data-test-id=city] input").val("Москва");
-        String planningDate = generateDate(4, "dd.MM.yyyy");
+        String planningDate = generateDate(4, "dd.MM.yyyy", locale);
         $("[data-test-id='date'] input").sendKeys(Keys.chord(Keys.SHIFT, Keys.HOME), Keys.BACK_SPACE);
         $("[data-test-id='date'] input").setValue(planningDate);
         $("[data-test-id=name] input").val("Петров Иван");
@@ -258,7 +259,7 @@ public class CardDeliveryTest {
     void phoneBigNumber() {
 
         $("[data-test-id=city] input").val("Москва");
-        String planningDate = generateDate(4, "dd.MM.yyyy");
+        String planningDate = generateDate(4, "dd.MM.yyyy", locale);
         $("[data-test-id='date'] input").sendKeys(Keys.chord(Keys.SHIFT, Keys.HOME), Keys.BACK_SPACE);
         $("[data-test-id='date'] input").setValue(planningDate);
         $("[data-test-id=name] input").val("Петров Иван");
@@ -273,7 +274,7 @@ public class CardDeliveryTest {
     void phoneWhitespace() {
 
         $("[data-test-id=city] input").val("Москва");
-        String planningDate = generateDate(4, "dd.MM.yyyy");
+        String planningDate = generateDate(4, "dd.MM.yyyy", locale);
         $("[data-test-id='date'] input").sendKeys(Keys.chord(Keys.SHIFT, Keys.HOME), Keys.BACK_SPACE);
         $("[data-test-id='date'] input").setValue(planningDate);
         $("[data-test-id=name] input").val("Петров Иван");
@@ -288,7 +289,7 @@ public class CardDeliveryTest {
     void phoneSymbol() {
 
         $("[data-test-id=city] input").val("Москва");
-        String planningDate = generateDate(4, "dd.MM.yyyy");
+        String planningDate = generateDate(4, "dd.MM.yyyy", locale);
         $("[data-test-id='date'] input").sendKeys(Keys.chord(Keys.SHIFT, Keys.HOME), Keys.BACK_SPACE);
         $("[data-test-id='date'] input").setValue(planningDate);
         $("[data-test-id=name] input").val("Петров Иван");
@@ -303,7 +304,7 @@ public class CardDeliveryTest {
     void phoneLetter() {
 
         $("[data-test-id=city] input").val("Москва");
-        String planningDate = generateDate(4, "dd.MM.yyyy");
+        String planningDate = generateDate(4, "dd.MM.yyyy", locale);
         $("[data-test-id='date'] input").sendKeys(Keys.chord(Keys.SHIFT, Keys.HOME), Keys.BACK_SPACE);
         $("[data-test-id='date'] input").setValue(planningDate);
         $("[data-test-id=name] input").val("Петров Иван");
@@ -318,7 +319,7 @@ public class CardDeliveryTest {
     void phoneEmpty() {
 
         $("[data-test-id=city] input").val("Москва");
-        String planningDate = generateDate(4, "dd.MM.yyyy");
+        String planningDate = generateDate(4, "dd.MM.yyyy", locale);
         $("[data-test-id='date'] input").sendKeys(Keys.chord(Keys.SHIFT, Keys.HOME), Keys.BACK_SPACE);
         $("[data-test-id='date'] input").setValue(planningDate);
         $("[data-test-id=name] input").val("Петров Иван");
@@ -333,7 +334,7 @@ public class CardDeliveryTest {
     void notAgreement() {
 
         $("[data-test-id=city] input").val("Москва");
-        String planningDate = generateDate(4, "dd.MM.yyyy");
+        String planningDate = generateDate(4, "dd.MM.yyyy", locale);
         $("[data-test-id='date'] input").sendKeys(Keys.chord(Keys.SHIFT, Keys.HOME), Keys.BACK_SPACE);
         $("[data-test-id='date'] input").setValue(planningDate);
         $("[data-test-id=name] input").val("Петров Иван");
@@ -352,7 +353,7 @@ public class CardDeliveryTest {
         $(By.className("menu")).shouldBe(Condition.visible);
         $$(By.className("menu-item__control")).find(Condition.text("Сыктывкар")).click();
 
-        String planningDate = generateDate(4, "dd.MM.yyyy");
+        String planningDate = generateDate(4, "dd.MM.yyyy", locale);
         $("[data-test-id='date'] input").sendKeys(Keys.chord(Keys.SHIFT, Keys.HOME), Keys.BACK_SPACE);
         $("[data-test-id='date'] input").setValue(planningDate);
         $("[data-test-id=name] input").val("Петров Иван");
@@ -368,7 +369,7 @@ public class CardDeliveryTest {
 
         $("[data-test-id=city] input").val("Лю");
         $(By.className("menu")).shouldNotBe(Condition.visible);
-    }*/
+    }
 
     @Test
     void successSubmitFormCalendarDateThreeDays() {
@@ -384,8 +385,8 @@ public class CardDeliveryTest {
 
         $(By.className("calendar-input")).click();
 
-        int max = addDays / 30 + 1;
-        for (int i = 0; i<= max; i++) {
+        int max = addDays / 30 + 2;
+        for (int i = 0; i <= max; i++) {
             if ($("div .calendar__name").getText().equals(month + " " + year)) {
                 $$("td").find(Condition.text(day)).click();
                 break;
@@ -421,8 +422,8 @@ public class CardDeliveryTest {
 
         $(By.className("calendar-input")).click();
 
-        int max = addDays / 30 + 1;
-        for (int i = 0; i<= max; i++) {
+        int max = addDays / 30 + 2;
+        for (int i = 0; i <= max; i++) {
             if ($("div .calendar__name").getText().equals(month + " " + year)) {
                 $$("td").find(Condition.text(day)).click();
                 break;
@@ -458,8 +459,8 @@ public class CardDeliveryTest {
 
         $(By.className("calendar-input")).click();
 
-        int max = addDays / 30 + 1;
-        for (int i = 0; i<= max; i++) {
+        int max = addDays / 30 + 2;
+        for (int i = 0; i <= max; i++) {
             if ($("div .calendar__name").getText().equals(month + " " + year)) {
                 $$("td").find(Condition.text(day)).click();
                 break;
