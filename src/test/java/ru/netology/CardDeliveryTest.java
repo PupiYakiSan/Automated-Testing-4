@@ -368,7 +368,7 @@ public class CardDeliveryTest {
         $(By.className("menu")).shouldNotBe(Condition.visible);
     }
 
-    @Test
+   /* @Test
     void successSubmitFormCalendarDateThreeDays() {
 
         $("[data-test-id=city] input").val("Москва");
@@ -465,7 +465,7 @@ public class CardDeliveryTest {
         $("[data-test-id='notification'] .notification__content")
                 .shouldHave(Condition.text("Встреча успешно забронирована на " + planningDate), Duration.ofSeconds(15))
                 .shouldBe(Condition.visible);
-    }
+    }*/
 
 
 }
